@@ -11,7 +11,7 @@ namespace ProjetoIntegrador.Domain.Entity
         public string? Email { get; set; }
         public string? Image { get; set; }
         public List<UserEntity> Administradores { get; set; } = [];
-        public List<Address> Addresses { get; set; } = [];
+        public List<AddressEntity> Addresses { get; set; } = [];
         public List<EventEntity> Events { get; set; } = [];
     }
 }

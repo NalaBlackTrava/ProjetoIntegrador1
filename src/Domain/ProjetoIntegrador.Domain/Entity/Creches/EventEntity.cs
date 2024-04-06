@@ -9,7 +9,7 @@ namespace ProjetoIntegrador.Domain.Entity.Creches
         public DateOnly? Date { get; set; }
         public string? Image { get; set; }
         public long CrecheId { get; set; }
-        public virtual CrecheEntity? Creche { get; set; } = null;
+        public virtual CrecheEntity Creche { get; set; } = null!;
         public virtual List<UserEntity> Users { get; set; } = [];
     }
 }

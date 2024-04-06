@@ -9,7 +9,7 @@ namespace ProjetoIntegrador.Domain.Entity.User
         public string? Phone { get; set; }
         public string? Email { get; set; }
         public string? Image { get; set; }
-        public virtual List<Address> Address { get; set; } = [];
+        public virtual List<AddressEntity> Addresses { get; set; } = [];
         public virtual List<EventEntity> Events { get; set; } = [];
         public virtual List<CrecheEntity> Creches { get; set; } = [];
     }

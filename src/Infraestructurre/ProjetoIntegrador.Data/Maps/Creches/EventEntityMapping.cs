@@ -1,6 +1,16 @@
-﻿namespace ProjetoIntegrador.Data.Maps.Creches
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using ProjetoIntegrador.Domain.Entity.Creches;
+
+namespace ProjetoIntegrador.Data.Maps.Creches
 {
-    internal class EventEntityMapping
+    public class EventEntityMapping : BaseMap<EventEntity>
     {
+        public override void Configure(EntityTypeBuilder<EventEntity> builder)
+        {
+            base.Configure(builder);
+
+            builder.HasMany(x => x.Users)
+                .WithMany(x => x.Events);
+        }
     }
 }

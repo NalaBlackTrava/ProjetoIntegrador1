@@ -1,8 +1,9 @@
 ﻿using ProjetoIntegrador.Domain.Entity.Professores;
+using ProjetoIntegrador.Domain.Entity.User;
 
 namespace ProjetoIntegrador.Domain.Entity
 {
-    public class Address : DomainEntity
+    public class AddressEntity : DomainEntity
     {
         public string? Responsible { get; set; }
         public string? ResponsiblePhone { get; set; }
@@ -21,7 +22,9 @@ namespace ProjetoIntegrador.Domain.Entity
         public string? ZipCode { get; set; }
         public List<string> Images { get; set; } = [];
         public long CrecheId { get; set; }
-        public virtual CrecheEntity? Creche { get; set; } = null;
+        public long UserId { get; set; }
+        public virtual UserEntity? User { get; set; }
+        public virtual CrecheEntity? Creche { get; set; }
         public virtual List<ProfessorEntity> Professores { get; set; } = [];
     }
 }

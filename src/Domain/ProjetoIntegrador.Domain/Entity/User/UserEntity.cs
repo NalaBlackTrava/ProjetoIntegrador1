@@ -1,4 +1,6 @@
-﻿namespace ProjetoIntegrador.Domain.Entity.User
+﻿using ProjetoIntegrador.Domain.Entity.Creches;
+
+namespace ProjetoIntegrador.Domain.Entity.User
 {
     public abstract class UserEntity : DomainEntity
     {
@@ -7,7 +9,8 @@
         public string? Phone { get; set; }
         public string? Email { get; set; }
         public string? Image { get; set; }
-        public virtual List<Address> Address { get; set; } = [];
-        public virtual List<CrecheEntity> CrecheEntity { get; set; } = [];
+        public virtual List<AddressEntity> Addresses { get; set; } = [];
+        public virtual List<EventEntity> Events { get; set; } = [];
+        public virtual List<CrecheEntity> Creches { get; set; } = [];
     }
 }

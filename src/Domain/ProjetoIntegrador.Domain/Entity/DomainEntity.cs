@@ -1,6 +1,8 @@
-﻿namespace ProjetoIntegrador.Domain.Entity
+﻿using ProjetoIntegrador.Domain.Interfaces;
+
+namespace ProjetoIntegrador.Domain.Entity
 {
-    public abstract class DomainEntity
+    public abstract class DomainEntity : IEntity
     {
         public long Id { get; set; }
     }

@@ -2,7 +2,7 @@
 
 namespace ProjetoIntegrador.Domain.Entity.User
 {
-    public abstract class UserEntity : DomainEntity
+    public class UserEntity : DomainEntity
     {
         public string? Name { get; set; }
         public string? CPF { get; set; }

@@ -1,7 +1,6 @@
-﻿using ProjetoIntegrador.Domain.Entity.Creches;
-using ProjetoIntegrador.Domain.Entity.User;
+﻿using ProjetoIntegrador.Domain.Entity.User;
 
-namespace ProjetoIntegrador.Domain.Entity
+namespace ProjetoIntegrador.Domain.Entity.Creches
 {
     public class CrecheEntity : DomainEntity
     {
@@ -10,8 +9,8 @@ namespace ProjetoIntegrador.Domain.Entity
         public string? Phone { get; set; }
         public string? Email { get; set; }
         public string? Image { get; set; }
-        public List<UserEntity> Administradores { get; set; } = [];
-        public List<AddressEntity> Addresses { get; set; } = [];
-        public List<EventEntity> Events { get; set; } = [];
+        public virtual List<UserEntity> Administradores { get; set; } = [];
+        public virtual List<AddressEntity> Addresses { get; set; } = [];
+        public virtual List<EventEntity> Events { get; set; } = [];
     }
 }

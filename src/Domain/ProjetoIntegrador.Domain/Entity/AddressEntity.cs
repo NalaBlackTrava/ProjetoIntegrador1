@@ -1,4 +1,5 @@
-﻿using ProjetoIntegrador.Domain.Entity.Professores;
+﻿using ProjetoIntegrador.Domain.Entity.Creches;
+using ProjetoIntegrador.Domain.Entity.Professores;
 using ProjetoIntegrador.Domain.Entity.User;
 
 namespace ProjetoIntegrador.Domain.Entity

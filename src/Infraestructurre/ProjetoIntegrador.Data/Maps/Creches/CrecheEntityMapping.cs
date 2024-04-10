@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ProjetoIntegrador.Domain.Entity;
+using ProjetoIntegrador.Domain.Entity.Creches;
 
 namespace ProjetoIntegrador.Data.Maps.Creches
 {

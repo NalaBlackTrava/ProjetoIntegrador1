@@ -14,6 +14,7 @@ namespace ProjetoIntegrador.Data
 
             var builder = new DbContextOptionsBuilder<DataContext>();
             var connectionString = config.GetConnectionString("Context");
+            Console.WriteLine(connectionString);
             builder.UseNpgsql(connectionString);
             return new DataContext(builder.Options);
         }

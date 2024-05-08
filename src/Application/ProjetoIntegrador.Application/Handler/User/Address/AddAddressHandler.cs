@@ -1,26 +1,25 @@
-using ProjetoIntegrador.Application.Commands.Creches.Address;
 using ProjetoIntegrador.Application.Commands.User.Address;
 using ProjetoIntegrador.Domain.Entity;
-using ProjetoIntegrador.Domain.Entity.Creches;
+using ProjetoIntegrador.Domain.Entity.User;
 
-namespace ProjetoIntegrador.Application.Handler.Creches.Address
+namespace ProjetoIntegrador.Application.Handler.User.Address
 {
     public class AddAddressHandler : IRequestHandler<AddAddressCommand, bool>
     {
-        private readonly IRepository<CrecheEntity> _crecheRepository;
+        private readonly IRepository<UserEntity> _userRepository;
 
-        public AddAddressHandler(IRepository<CrecheEntity> crecheRepository)
+        public AddAddressHandler(IRepository<UserEntity> userRepository)
         {
-            _crecheRepository = crecheRepository;
+            _userRepository = userRepository;
         }
 
         public async Task<bool> Handle(AddAddressCommand request, CancellationToken cancellationToken)
         {
-            var creche = await _crecheRepository.FindAsync(request.CrecheId);
+            var user = await _userRepository.FindAsync(request.UserId);
 
-            if (creche == null)
+            if (user == null)
             {
-                throw new KeyNotFoundException("Creche not found");
+                throw new KeyNotFoundException("User not found");
             }
 
             var address = new AddressEntity
@@ -31,18 +30,18 @@ namespace ProjetoIntegrador.Application.Handler.Creches.Address
                 Complement = request.Address.Complement,
                 Neighborhood = request.Address.Neighborhood,
                 Number = request.Address.Number,
-                Images = request.Address.Images,
+                ZipCode = request.Address.ZipCode,
                 Capacity = request.Address.Capacity,
                 Schedule = request.Address.Schedule,
                 Responsible = request.Address.Responsible,
                 ResponsiblePhone = request.Address.ResponsiblePhone,
                 ResponsibleEmail = request.Address.ResponsibleEmail,
                 Value = request.Address.Value,
-                ZipCode = request.Address.ZipCode
+                Images = request.Address.Images
             };
 
-            creche.Addresses.Add(address);
-            await _crecheRepository.UpdateAsync(creche);
+            user.Addresses.Add(address);
+            await _userRepository.UpdateAsync(user);
             return true;
         }
     }

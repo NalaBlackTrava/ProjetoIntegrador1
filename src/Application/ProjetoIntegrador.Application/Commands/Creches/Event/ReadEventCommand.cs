@@ -4,6 +4,6 @@ namespace ProjetoIntegrador.Application.Commands.Creches.Event
 {
     public class ReadEventCommand : IRequest<EventEntity>
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
     }
 }

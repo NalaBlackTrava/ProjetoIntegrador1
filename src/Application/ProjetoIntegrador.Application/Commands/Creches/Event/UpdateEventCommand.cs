@@ -4,7 +4,7 @@ namespace ProjetoIntegrador.Application.Commands.Creches.Event
 {
     public class UpdateEventCommand : IRequest<EventEntity>
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateOnly Date { get; set; }

@@ -4,6 +4,8 @@ using MediatR;
 using ProjetoIntegrador.Application.Commands.Creches;
 using System.Threading.Tasks;
 using ProjetoIntegrador.Application.Commands.Creches.Address;
+using ProjetoIntegrador.Application.Commands.Creches.Event;
+using ProjetoIntegrador.Application.Commands.Creches.Address.Professor;
 
 namespace ProjetoIntegrador.Controllers
 {
@@ -62,6 +64,63 @@ namespace ProjetoIntegrador.Controllers
         public async Task<IActionResult> Remove(long crecheId, long addressId)
         {
             var result = await _mediator.Send(new CrecheRemoveAddressCommand { AddressId = addressId, CrecheId = crecheId });
+            return Ok(result);
+        }
+
+        [HttpPost("{crecheId}/events")]
+        public async Task<IActionResult> CreateEvent(long crecheId, CreateEventCommand command)
+        {
+            if (crecheId != command.CrecheId)
+            {
+                return BadRequest();
+            }
+
+            var result = await _mediator.Send(command);
+            return CreatedAtAction(nameof(CreateEvent), new { id = result.Id }, result);
+        }
+
+        [HttpGet("{crecheId}/events/{eventId}")]
+        public async Task<IActionResult> ReadEvent(long eventId)
+        {
+            var result = await _mediator.Send(new ReadEventCommand { Id = eventId });
+            return Ok(result);
+        }
+
+        [HttpPut("{crecheId}/events/{eventId}")]
+        public async Task<IActionResult> UpdateEvent(long eventId, UpdateEventCommand command)
+        {
+            if (eventId != command.Id)
+            {
+                return BadRequest();
+            }
+
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpDelete("{crecheId}/events/{eventId}")]
+        public async Task<IActionResult> DeleteEvent(long eventId)
+        {
+            var result = await _mediator.Send(new DeleteEventCommand { Id = eventId });
+            return Ok(result);
+        }
+
+        [HttpPost("{crecheId}/address/{addressId}/professors")]
+        public async Task<IActionResult> AddProfessor(long addressId, AddProfessorCommand command)
+        {
+            if (addressId != command.AddressId)
+            {
+                return BadRequest();
+            }
+
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpDelete("{crecheId}/address/{addressId}/professors/{professorId}")]
+        public async Task<IActionResult> RemoveProfessor(long addressId, long professorId)
+        {
+            var result = await _mediator.Send(new RemoveProfessorCommand { AddressId = addressId, ProfessorId = professorId });
             return Ok(result);
         }
     }

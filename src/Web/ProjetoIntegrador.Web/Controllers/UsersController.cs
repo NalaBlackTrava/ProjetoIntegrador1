@@ -2,6 +2,7 @@
 using MediatR;
 using ProjetoIntegrador.Application.Commands.User;
 using ProjetoIntegrador.Application.Commands.User.Address;
+using ProjetoIntegrador.Application.Commands.User.Event;
 
 namespace ProjetoIntegrador.Controllers
 {
@@ -60,6 +61,20 @@ namespace ProjetoIntegrador.Controllers
         public async Task<IActionResult> Remove(long userId, long addressId)
         {
             var result = await _mediator.Send(new UserRemoveAddressCommand { AddressId = addressId, UserId = userId });
+            return Ok(result);
+        }
+
+        [HttpPost("{userId}/events/{eventId}")]
+        public async Task<IActionResult> AddEvent(long userId, long eventId)
+        {
+            var result = await _mediator.Send(new AddEventCommand { UserId = userId, EventId = eventId });
+            return Ok(result);
+        }
+
+        [HttpDelete("{userId}/events/{eventId}")]
+        public async Task<IActionResult> RemoveEvent(long userId, long eventId)
+        {
+            var result = await _mediator.Send(new RemoveEventCommand { UserId = userId, EventId = eventId });
             return Ok(result);
         }
     }

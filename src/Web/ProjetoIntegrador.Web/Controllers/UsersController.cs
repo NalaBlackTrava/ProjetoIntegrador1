@@ -50,7 +50,7 @@ namespace ProjetoIntegrador.Controllers
         }
 
         [HttpPost("address")]
-        public async Task<IActionResult> Add(AddAddressCommand command)
+        public async Task<IActionResult> Add(UserAddAddressCommand command)
         {
             await _mediator.Send(command);
             return Ok();
@@ -59,7 +59,7 @@ namespace ProjetoIntegrador.Controllers
         [HttpDelete("{userId}/address/{addressId}")]
         public async Task<IActionResult> Remove(long userId, long addressId)
         {
-            var result = await _mediator.Send(new RemoveAddressCommand { AddressId = addressId, UserId = userId });
+            var result = await _mediator.Send(new UserRemoveAddressCommand { AddressId = addressId, UserId = userId });
             return Ok(result);
         }
     }

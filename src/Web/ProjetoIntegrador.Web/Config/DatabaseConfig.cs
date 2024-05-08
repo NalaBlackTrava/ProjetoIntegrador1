@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Npgsql;
 using ProjetoIntegrador.Data;
+using ProjetoIntegrador.Domain.Entity;
 using ProjetoIntegrador.Domain.Interfaces;
 
 namespace ProjetoIntegrador.Config
@@ -27,14 +28,13 @@ namespace ProjetoIntegrador.Config
 
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
-            var repositoryInterfaces = typeof(IRepository<>).Assembly.GetTypes().Where(x => x.IsInterface && x.GetInterfaces().FirstOrDefault()?.IsGenericType == true
-            && x.GetInterfaces().FirstOrDefault()?.GetGenericTypeDefinition() == typeof(IRepository<>));
-            var infraTypes = typeof(Repository<>).Assembly.GetTypes();
+            var infraTypes = typeof(IRepository<>).Assembly.GetTypes().Where(x => x.IsSubclassOf(typeof(DomainEntity)));
 
-            foreach (var repositoryInterface in repositoryInterfaces)
+            foreach (var @type in infraTypes)
             {
-                var infraType = infraTypes.First(x => repositoryInterface.IsAssignableFrom(x));
-                services.AddScoped(repositoryInterface, infraType);
+                var addType = typeof(Repository<>).MakeGenericType(@type);
+                var interfaceType = typeof(IRepository<>).MakeGenericType(@type);
+                services.AddScoped(interfaceType, addType);
             }
 
             return services;

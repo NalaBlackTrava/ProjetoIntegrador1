@@ -1,15 +1,9 @@
 ﻿using ProjetoIntegrador.Application.Commands.Creches.Address;
-using ProjetoIntegrador.Application.Commands.User.Address;
 using ProjetoIntegrador.Domain.Entity.Creches;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjetoIntegrador.Application.Handler.Creches.Address
 {
-    public class RemoveAddressHandler : IRequestHandler<RemoveAddressCommand, bool>
+    public class RemoveAddressHandler : IRequestHandler<CrecheRemoveAddressCommand, bool>
     {
         private readonly IRepository<CrecheEntity> _crecheRepository;
 
@@ -18,7 +12,7 @@ namespace ProjetoIntegrador.Application.Handler.Creches.Address
             _crecheRepository = crecheRepository;
         }
 
-        public async Task<bool> Handle(RemoveAddressCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(CrecheRemoveAddressCommand request, CancellationToken cancellationToken)
         {
             var creche = await _crecheRepository.FindAsync(request.CrecheId);
 

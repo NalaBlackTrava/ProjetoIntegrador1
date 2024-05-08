@@ -4,7 +4,7 @@ using ProjetoIntegrador.Domain.Entity.User;
 
 namespace ProjetoIntegrador.Application.Handler.User.Address
 {
-    public class AddAddressHandler : IRequestHandler<AddAddressCommand, bool>
+    public class AddAddressHandler : IRequestHandler<UserAddAddressCommand, bool>
     {
         private readonly IRepository<UserEntity> _userRepository;
 
@@ -13,7 +13,7 @@ namespace ProjetoIntegrador.Application.Handler.User.Address
             _userRepository = userRepository;
         }
 
-        public async Task<bool> Handle(AddAddressCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(UserAddAddressCommand request, CancellationToken cancellationToken)
         {
             var user = await _userRepository.FindAsync(request.UserId);
 

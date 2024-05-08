@@ -1,7 +1,7 @@
 ﻿using ProjetoIntegrador.Application.Commands.User.Address;
 using ProjetoIntegrador.Domain.Entity.User;
 
-public class RemoveAddressHandler : IRequestHandler<RemoveAddressCommand, bool>
+public class RemoveAddressHandler : IRequestHandler<UserRemoveAddressCommand, bool>
 {
     private readonly IRepository<UserEntity> _userRepository;
 
@@ -10,7 +10,7 @@ public class RemoveAddressHandler : IRequestHandler<RemoveAddressCommand, bool>
         _userRepository = userRepository;
     }
 
-    public async Task<bool> Handle(RemoveAddressCommand request, CancellationToken cancellationToken)
+    public async Task<bool> Handle(UserRemoveAddressCommand request, CancellationToken cancellationToken)
     {
         var user = await _userRepository.FindAsync(request.UserId);
 

@@ -12,8 +12,8 @@ namespace ProjetoIntegrador.Config
         public static IServiceCollection AddDatabase(this IServiceCollection services,
             IConfiguration config)
         {
-            var connection = new NpgsqlConnectionStringBuilder(config.GetConnectionString("FinancialAdvisorContext"));
-            connection.Database = "FinancialAdvisor";
+            var connection = new NpgsqlConnectionStringBuilder(config.GetConnectionString("Context"));
+            connection.Database = "ProjetoIntegrador";
             services.AddDbContext<DataContext>(options =>
             {
                 options.UseNpgsql(connection.ToString(),

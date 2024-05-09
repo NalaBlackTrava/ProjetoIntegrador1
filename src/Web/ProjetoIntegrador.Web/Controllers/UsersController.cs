@@ -3,6 +3,7 @@ using MediatR;
 using ProjetoIntegrador.Application.Commands.User;
 using ProjetoIntegrador.Application.Commands.User.Address;
 using ProjetoIntegrador.Application.Commands.User.Event;
+using ProjetoIntegrador.Application.Commands.Creches.Administrator;
 
 namespace ProjetoIntegrador.Controllers
 {
@@ -75,6 +76,20 @@ namespace ProjetoIntegrador.Controllers
         public async Task<IActionResult> RemoveEvent(long userId, long eventId)
         {
             var result = await _mediator.Send(new RemoveEventCommand { UserId = userId, EventId = eventId });
+            return Ok(result);
+        }
+
+        [HttpPost("{userId}/creches/{crecheId}/admins")]
+        public async Task<IActionResult> AddAdmin(long userId, long crecheId)
+        {
+            var result = await _mediator.Send(new AddAdminCommand { UserId = userId, CrecheId = crecheId });
+            return Ok(result);
+        }
+
+        [HttpDelete("{userId}/creches/{crecheId}/admins")]
+        public async Task<IActionResult> RemoveAdmin(long userId, long crecheId)
+        {
+            var result = await _mediator.Send(new RemoveAdminCommand { UserId = userId, CrecheId = crecheId });
             return Ok(result);
         }
     }
